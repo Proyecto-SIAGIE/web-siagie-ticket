@@ -1,0 +1,41 @@
+:host {
+  display: contents;
+}
+.header-header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding-top: var(--dl-space-space-twounits);
+  padding-left: var(--dl-space-space-threeunits);
+  padding-right: var(--dl-space-space-threeunits);
+  padding-bottom: var(--dl-space-space-twounits);
+  justify-content: space-between;
+  background-color: #005E3E;
+}
+.header-siagie-logo {
+  width: 200px;
+  object-fit: cover;
+}
+.header-minedu-logo {
+  width: 350px;
+  object-fit: cover;
+}
+
+
+@media(max-width: 767px) {
+  .header-header {
+    padding-left: var(--dl-space-space-twounits);
+    padding-right: var(--dl-space-space-twounits);
+  }
+}
+@media(max-width: 479px) {
+  .header-header {
+    gap: var(--dl-space-space-twounits);
+    height: auto;
+    padding: var(--dl-space-space-unit);
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}
