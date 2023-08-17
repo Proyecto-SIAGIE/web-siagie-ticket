@@ -10,7 +10,14 @@ const routes: Routes = [
       import("./pages/management/ticket-register/ticket-tech-register/ticket-tech-register.module").then(
         (mod) => mod.TicketTechRegisterModule
       ),
-  }
+  },
+  {
+    path: "login",
+    loadChildren: () =>
+      import("./pages/security/login/login.module").then(
+        (mod) => mod.LoginModule
+      ),
+  },
 ]
 
 @NgModule({
