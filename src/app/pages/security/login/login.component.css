@@ -167,6 +167,15 @@
   border-width: 0px;
   background-color: #0f72f3;
 }
+
+.login-button:hover {
+  cursor: pointer;
+}
+
+.login-button:active {
+  transform: scale(0.97);
+}
+
 .login-text16 {
   color: var(--dl-color-gray-white);
   font-family: Lato;
