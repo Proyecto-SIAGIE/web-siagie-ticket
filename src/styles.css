@@ -1,3 +1,5 @@
+@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+
 :root {
   --dl-color-gray-500: #595959;
   --dl-color-gray-700: #999999;

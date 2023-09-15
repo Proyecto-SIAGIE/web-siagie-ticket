@@ -18,6 +18,13 @@ const routes: Routes = [
         (mod) => mod.LoginModule
       ),
   },
+  {
+    path: "ticket",
+    loadChildren: () =>
+    import("./pages/management/ticket-detail/ticket-detail-external/ticket-detail-external.module").then(
+      (mod) => mod.TicketDetailExternalModule
+    ),
+  }
 ]
 
 @NgModule({

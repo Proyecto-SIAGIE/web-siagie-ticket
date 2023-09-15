@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import * as CryptoJS from "crypto-js";
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,49 @@ export class HelperService {
     const dataDecripted = JSON.parse(dataBytes.toString(CryptoJS.enc.Utf8));
     return dataDecripted;
   }*/
+
+  getSuccessAlert(
+    title: string,
+    message: string,
+    confirmButtonText: string = ""
+  ) {
+    return Swal.fire({
+      allowOutsideClick: false,
+      title: title,
+      icon: "success",
+      html: message,
+      confirmButtonColor: "#2282ff",
+      confirmButtonText: confirmButtonText,
+    });
+  }
+
+  getErrorAlert(
+    message: string = `¡Oops! algo sucedió. <br>Por favor intenta nuevamente.`,
+    title = "¡Lo sentimos!"
+  ) {
+    return Swal.fire({
+      title: title,
+      icon: "error",
+      allowOutsideClick: false,
+      html: message,
+      confirmButtonText: `<i class="fa-solid fa-rotate-right"></i> Vuelve a intentar nuevamente`,
+      confirmButtonColor: "#2282ff",
+    });
+  }
+
+  getAlertMessage(
+    message: string = `¡Oops! algo sucedió. <br>Por favor intenta nuevamente.`,
+    title = ""
+  ) {
+    return Swal.fire({
+      title: title,
+      icon: "warning",
+      allowOutsideClick: false,
+      html: message,
+      confirmButtonText: `<i class="fa-solid fa-rotate-right"></i> Vuelve a intentar nuevamente`,
+      confirmButtonColor: "#2282ff",
+    });
+  }
 
   encodeData = async (e: any, r: any) => {
     if (null === e) return null;

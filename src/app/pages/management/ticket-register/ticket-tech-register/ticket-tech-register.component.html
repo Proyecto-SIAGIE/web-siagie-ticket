@@ -3,16 +3,11 @@
     <section class="tech-register-ticket-section">
       <div id="description" class="tech-register-ticket-description">
         <div class="tech-register-ticket-container01">
-          <img
-            alt="image"
-            src="assets/Usuario-400w.png"
-            class="tech-register-ticket-image"
-          />
+          <img alt="image" src="assets/Usuario-400w.png" class="tech-register-ticket-image" />
           <h2 class="tech-register-ticket-text">Nuevo ticket</h2>
           <span class="tech-register-ticket-text01">
             <span class="tech-register-ticket-text02">
               (*)
-              <span [innerHTML]="raw7l6e"></span>
             </span>
             <span class="tech-register-ticket-text03">Campos obligatorios</span>
           </span>
@@ -34,11 +29,7 @@
       </div>
       <div id="form-data" class="tech-register-ticket-form-data">
         <div class="tech-register-ticket-container04">
-          <form
-            id="user-information"
-            enctype="text/plain"
-            class="tech-register-ticket-form"
-          >
+          <form id="user-information" enctype="text/plain" class="tech-register-ticket-form">
             <div class="tech-register-ticket-container05">
               <label for="user-information" class="tech-register-ticket-text07">
                 <span class="tech-register-ticket-text08">DNI de usuario</span>
@@ -47,17 +38,9 @@
                 <span class="tech-register-ticket-text11">:</span>
               </label>
               <div class="tech-register-ticket-container06">
-                <input
-                  type="text"
-                  name="dni_input"
-                  required
-                  placeholder="Ingrese el dni"
-                  class="tech-register-ticket-textinput input"
-                />
-                <button
-                  type="button"
-                  class="tech-register-ticket-button button"
-                >
+                <input type="text" name="dni_input" required placeholder="Ingrese el dni"
+                  class="tech-register-ticket-textinput input" [(ngModel)]="userdni"/>
+                <button type="button" (click)="getUserPassportData()" class="tech-register-ticket-button button">
                   <span class="tech-register-ticket-text12">
                     <span>Validar</span>
                     <br />
@@ -72,13 +55,8 @@
                 <span class="tech-register-ticket-text18">*</span>
                 <span class="tech-register-ticket-text19">:</span>
               </label>
-              <input
-                type="text"
-                name="dni_input"
-                required
-                placeholder="-"
-                class="tech-register-ticket-textinput1 input"
-              />
+              <input [(ngModel)]="username" type="text" name="username_input" required placeholder="-" disabled="true"
+                class="tech-register-ticket-textinput1 input" />
             </div>
             <div class="tech-register-ticket-container08">
               <label for="user-information" class="tech-register-ticket-text20">
@@ -87,13 +65,22 @@
                 <span class="tech-register-ticket-text23">*</span>
                 <span class="tech-register-ticket-text24">:</span>
               </label>
-              <input
-                type="text"
-                name="dni_input"
-                required
-                placeholder="-"
-                class="tech-register-ticket-textinput2 input"
-              />
+              <input [(ngModel)]="fullname" type="text" name="name_input" required placeholder="-" disabled="true"
+                class="tech-register-ticket-textinput2 input" />
+            </div>
+            <div class="tech-register-ticket-container10">
+              <label for="user-information" class="tech-register-ticket-text30">
+                <span class="tech-register-ticket-text31">
+                  Correo
+                </span>
+                <br class="tech-register-ticket-text32" />
+                <span class="tech-register-ticket-text33">electrónico</span>
+                <span> </span>
+                <span class="tech-register-ticket-text35">*</span>
+                <span class="tech-register-ticket-text36">:</span>
+              </label>
+              <input type="email" [(ngModel)]="usermail" name="email_input" required placeholder="-"
+                class="tech-register-ticket-textinput3 input" />
             </div>
             <div class="tech-register-ticket-container09">
               <label for="user-information" class="tech-register-ticket-text25">
@@ -102,69 +89,85 @@
                 <span class="tech-register-ticket-text28">*</span>
                 <span class="tech-register-ticket-text29">:</span>
               </label>
-              <select class="tech-register-ticket-select">
-                <option value="DRE" selected>DRE</option>
+              <select class="tech-register-ticket-select" (ngModelChange)="onSelectSedeChange($event)"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOpt" [disabled]="selectSedeStatus">
+
+                <option *ngFor="let opcion of sedeOptions" [value]="opcion">{{ opcion }}</option>
+                <!--<option value="DRE" selected>DRE</option>
                 <option value="UGEL">UGEL</option>
-                <option value="IIEE">IIEE</option>
+                <option value="IIEE">IIEE</option>-->
               </select>
             </div>
-            <div class="tech-register-ticket-container10">
-              <label for="user-information" class="tech-register-ticket-text30">
-                <span class="tech-register-ticket-text31">
-                  Correo
-                  <span [innerHTML]="rawk20f"></span>
-                </span>
-                <br class="tech-register-ticket-text32" />
-                <span class="tech-register-ticket-text33">electrónico</span>
-                <span> </span>
-                <span class="tech-register-ticket-text35">*</span>
-                <span class="tech-register-ticket-text36">:</span>
-              </label>
-              <input
-                type="text"
-                name="dni_input"
-                required
-                placeholder="-"
-                class="tech-register-ticket-textinput3 input"
-              />
-            </div>
+
+            <ng-container *ngIf="selectedOpt === 'DRE'">
+              <div class="tech-register-ticket-container09">
+                <label for="user-information" class="tech-register-ticket-text25">
+                  <span class="tech-register-ticket-text26">Seleccionar Ugel</span>
+                  <span> </span>
+                  <span class="tech-register-ticket-text28">*</span>
+                  <span class="tech-register-ticket-text29">:</span>
+                </label>
+                <select class="tech-register-ticket-select" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="selectedUgel">
+
+                  <option *ngFor="let opcion of ugelOptions" [value]="opcion">{{ opcion }}</option>
+                  <!--<option value="DRE" selected>DRE</option>
+                  <option value="UGEL">UGEL</option>
+                  <option value="IIEE">IIEE</option>-->
+                </select>
+              </div>
+            </ng-container>
+
+
             <div class="tech-register-ticket-container11">
               <label for="user-information" class="tech-register-ticket-text37">
-                <span>Teléfono </span>
-                <span class="tech-register-ticket-text39">*</span>
-                <span class="tech-register-ticket-text40">:</span>
+                <span>
+                  Código
+                </span>
+                <br />
+                <span>modular </span>
+                <span class="tech-register-ticket-text41">*</span>
+                <span class="tech-register-ticket-text42">:</span>
               </label>
-              <input
-                type="text"
-                name="dni_input"
-                required
-                placeholder="-"
-                class="tech-register-ticket-textinput4 input"
-              />
+
+              <ng-select
+                  
+                  placeholder="Selecione IE..."
+                  [items]="institutions"
+                  class="tech-register-ticket-textinput4"
+                  [clearable]="false"
+                  bindLabel="codeAndName"
+                  bindValue="modularCode"
+                />
+              <!--<input type="text" [(ngModel)]="modularCode" name="ie_input" required placeholder="-" class="tech-register-ticket-textinput4 input"
+                [disabled]="isTypeIE" />-->
             </div>
             <div class="tech-register-ticket-container12">
-              <label for="user-information" class="tech-register-ticket-text41">
+              <label for="user-information" class="tech-register-ticket-text43">
+                <span>Teléfono </span>
+                <span class="tech-register-ticket-text45">*</span>
+                <span class="tech-register-ticket-text46">:</span>
+              </label>
+              <input [(ngModel)]="userphone" type="text" name="phone_input" required placeholder="-"
+                class="tech-register-ticket-textinput5 input" />
+            </div>
+            <div class="tech-register-ticket-container13">
+              <label for="user-information" class="tech-register-ticket-text47">
                 Anexo:
               </label>
-              <input
-                type="text"
-                name="dni_input"
-                required
-                placeholder="-"
-                class="tech-register-ticket-textinput5 input"
-              />
+              <input [(ngModel)]="userphoneanexo" type="text" name="anexo_input" required placeholder="-"
+                class="tech-register-ticket-textinput6 input" />
             </div>
           </form>
         </div>
-        <div class="tech-register-ticket-container13">
-          <div class="tech-register-ticket-container14">
-            <div id="description-form" class="tech-register-ticket-container15">
-              <span class="tech-register-ticket-text42">
+        <div class="tech-register-ticket-container14">
+          <div class="tech-register-ticket-container15">
+            <div id="description-form" class="tech-register-ticket-container16">
+              <span class="tech-register-ticket-text48">
                 <span>
                   Recuerde que su consulta solo deberá hacer referencia
-                  <span [innerHTML]="raw412f"></span>
                 </span>
-                <span class="tech-register-ticket-text44">
+                <span class="tech-register-ticket-text50">
                   a una sola persona
                 </span>
                 <span>
@@ -174,92 +177,105 @@
                 </span>
               </span>
             </div>
-            <div class="tech-register-ticket-container16">
-              <div class="tech-register-ticket-container17">
-                <label
-                  for="user-information"
-                  class="tech-register-ticket-text46"
-                >
-                  <span class="tech-register-ticket-text47">Tema</span>
-                  <span> </span>
-                  <span class="tech-register-ticket-text49">*</span>
-                </label>
-                <select class="tech-register-ticket-select1">
-                  <option value="Evaluación" selected>Evaluación</option>
-                </select>
-              </div>
-              <select class="tech-register-ticket-select2">
-                <option value="Acta consolidada de evaluación" selected>
-                  Acta consolidada de evaluación
-                </option>
-              </select>
-              <select class="tech-register-ticket-select3">
-                <option value="Rectificación de actas" selected>
-                  Rectificación de actas
-                </option>
-              </select>
-              <select class="tech-register-ticket-select4">
-                <option value="Otros" selected>Otros</option>
-              </select>
+            <div class="tech-register-ticket-container17">
               <div class="tech-register-ticket-container18">
-                <label
-                  for="user-information"
-                  class="tech-register-ticket-text50"
-                >
+                <label for="user-information" class="tech-register-ticket-text52">
+                  <span class="tech-register-ticket-text53">Tema</span>
+                  <span> </span>
+                  <span class="tech-register-ticket-text55">*</span>
+                </label>
+
+                <ng-select
+                  class="tech-register-ticket-select1"
+                  placeholder="Selecione..."
+                  [items]="categories"
+                  (change)="onSelectedCategory('category', $event)"
+                  [clearable]="false"
+                  bindLabel="name"
+                  bindValue="id"
+                />
+
+              </div>
+              <ng-select *ngIf="subCategories1.length > 0"
+                class="tech-register-ticket-select2"
+                placeholder="Selecione subcategoria..."
+                [items]="subCategories1"
+                (change)="onSelectedCategory('subCategoria1', $event)"
+                [clearable]="false"
+                bindLabel="name"
+                bindValue="id"
+              >
+
+              </ng-select>
+
+              <ng-select *ngIf="subCategories2.length > 0"
+                class="tech-register-ticket-select2"
+                placeholder="Selecione subcategoria..."
+                [items]="subCategories2"
+                (change)="onSelectedCategory('subCategoria2', $event)"
+                [clearable]="false"
+                bindLabel="name"
+                bindValue="id"
+              ></ng-select>
+
+              <ng-select *ngIf="subCategories3.length > 0"
+                class="tech-register-ticket-select2"
+                placeholder="Selecione subcategoria..."
+                [items]="subCategories3"
+                [clearable]="false"
+                bindLabel="name"
+                bindValue="id"
+              ></ng-select>
+
+
+              <div class="tech-register-ticket-container19">
+                <label for="user-information" class="tech-register-ticket-text56">
                   <span>
                     Consulta
-                    <span [innerHTML]="rawoc3s"></span>
                   </span>
-                  <span class="tech-register-ticket-text52">*</span>
+                  <span class="tech-register-ticket-text58">*</span>
                 </label>
-                <textarea
-                  rows="6"
-                  placeholder="Escribe tu consulta..."
-                  class="tech-register-ticket-textarea textarea"
-                ></textarea>
+                <textarea [(ngModel)]="requestuser" rows="6" placeholder="Escribe tu consulta..."
+                  class="tech-register-ticket-textarea textarea"></textarea>
               </div>
-              <div class="tech-register-ticket-container19">
-                <label
-                  for="user-information"
-                  class="tech-register-ticket-text53"
-                >
+              <div class="tech-register-ticket-container20">
+                <label for="user-information" class="tech-register-ticket-text59">
                   <span>Subir </span>
                   <br />
                   <span>archivos</span>
                   <br />
                 </label>
-                <div class="tech-register-ticket-container20">
-                  <div class="tech-register-ticket-container21">
-                    <button
-                      type="button"
-                      class="tech-register-ticket-button1 button"
-                    >
-                      <span class="tech-register-ticket-text58">
+                <div class="tech-register-ticket-container21">
+                  <div class="tech-register-ticket-container22">
+                    <label for="fileInput" class="tech-register-ticket-button1 button">
+                      <span class="tech-register-ticket-text64">
                         <span>Seleccionar archivos</span>
                         <br />
                       </span>
-                    </button>
-                    <span class="tech-register-ticket-text61">
-                      <span>
-                        Ningún archivo
-                        <span [innerHTML]="rawx72s"></span>
+                    </label>
+                    <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
+                      multiple />
+                    <span class="tech-register-ticket-text67">
+                      <span *ngIf="selectedFiles !== null && selectedFiles.length > 0">
+
+                        <ng-container *ngFor="let file of selectedFiles; let last = last">
+                          {{ file.name }}{{ !last ? ',   ' : '' }}
+                        </ng-container>
                       </span>
-                      <span>seleccionado</span>
+                      <span *ngIf="!selectedFiles || selectedFiles.length === 0">
+                        Ningún archivo seleccionado
+                      </span>
                       <br />
                     </span>
                   </div>
-                  <span class="tech-register-ticket-text65">
+                  <span class="tech-register-ticket-text71">
                     Ingrese un archivo con formato (pdf, doc, xls, xlsx, jpg,
                     png, bmp) menor a 5 mb.
                   </span>
                 </div>
               </div>
-              <button type="submit" class="tech-register-ticket-button2 button">
-                <img
-                  alt="image"
-                  src="/assets/send-svgrepo.svg"
-                  class="tech-register-ticket-image1"
-                />
+              <button type="submit" class="tech-register-ticket-button2 button" (click)="storeTicket()">
+                <img alt="image" src="assets/send-svgrepo.svg" class="tech-register-ticket-image1" />
                 <span>Enviar</span>
               </button>
             </div>
@@ -267,5 +283,6 @@
         </div>
       </div>
     </section>
+
   </main>
 </div>

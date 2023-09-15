@@ -12,6 +12,6 @@ export class AppComponent {
 
   constructor() {
     //MODIFICA AQUI PARA MOSTRAR O NO EL HEADER, YA PENSARÉ EN DINAMIZARLO
-    this.isLoggedIn$ = false;
+    this.isLoggedIn$ = true;
   }
 }
