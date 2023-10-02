@@ -15,7 +15,9 @@
             </span>
             <div class="ticket-detail-container05">
               <button type="button" class="ticket-detail-button button">
-                Pendiente
+                <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.usiStatus}}
+                </ng-container>
               </button>
               <button type="button" class="ticket-detail-button1 button">
                 <span>Imprimir</span>
@@ -40,33 +42,60 @@
           </span>
         </div>
         <div class="ticket-detail-content-detail">
-          <span class="ticket-detail-text018">3160477</span>
-          <span class="ticket-detail-text019">Otros</span>
+          <span class="ticket-detail-text018">
+            <ng-container *ngFor="let ticket of tickets">
+              {{ticket.id}}
+            </ng-container>
+          </span>
+          <span class="ticket-detail-text019">
+            <ng-container *ngFor="let ticket of tickets">
+              {{ticket.subcategory1Id}}
+            </ng-container>
+          </span>
           <span class="ticket-detail-text020">2023-05-18 12:09</span>
-          <span class="ticket-detail-text021">2023-05-18 12:09</span>
+          <span class="ticket-detail-text021">
+            <ng-container *ngFor="let ticket_detail of ticket_Details">
+              {{ticket_detail.dateMod}}
+            </ng-container>
+          </span>
         </div>
       </div>
       <div class="ticket-detail-container06">
         <div class="ticket-detail-container07">
           <div class="ticket-detail-container08">
             <span class="ticket-detail-text022">Asignada a </span>
-            <span class="ticket-detail-text023">LBULEJE</span>
+            <span class="ticket-detail-text023">
+              <ng-container *ngFor="let ticket_detail of ticket_Details">
+                {{ticket_detail.assignedTechName}}
+              </ng-container></span>
           </div>
         </div>
         <div class="ticket-detail-container09">
           <div class="ticket-detail-container10">
             <span class="ticket-detail-text024">Canal de recepción:</span>
-            <span class="ticket-detail-text025">Multicanal</span>
+            <span class="ticket-detail-text025">
+                <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.source}}
+                </ng-container>
+              </span>
           </div>
           <div class="ticket-detail-container11">
             <span class="ticket-detail-text026">Resolución:</span>
-            <span class="ticket-detail-text027">Abierta</span>
+            <span class="ticket-detail-text027">
+                <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.status}}
+                </ng-container>
+            </span>
           </div>
         </div>
         <div class="ticket-detail-container12">
           <div class="ticket-detail-container13">
             <span class="ticket-detail-text028">Prioridad</span>
-            <span class="ticket-detail-text029">Medio</span>
+            <span class="ticket-detail-text029">
+                <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.status}}
+                </ng-container>
+            </span>
           </div>
         </div>
       </div>
@@ -77,14 +106,14 @@
         </div>
         <div class="ticket-detail-container16">
           <span class="ticket-detail-text032">
-            3160477: MANTENIMIENTO DE USUARIOS/ ACTUALIZAR LOGIN
+                <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.summary}}
+                </ng-container>
           </span>
           <span class="ticket-detail-text033">
-            Buenas tardes, por favor necesito su apoyo para solucionar el caso
-            de la Docente Fátima Odiaga Ríos, identificada con DNI N° 70208682
-            problema para agregar al mantenimiento de usuario, toda vez que sale
-            el número de usuario 4 números y no permite agregar, se adjunta
-            capturas de pantalla. Gracias.
+                <ng-container *ngFor="let ticket of tickets">
+                  {{ticket.description}}
+                </ng-container>
           </span>
         </div>
       </div>
@@ -111,13 +140,25 @@
             <span class="ticket-detail-text045">EBR</span>
             <span class="ticket-detail-text046">.</span>
             <span class="ticket-detail-text047">Requerimientoi</span>
-            <span class="ticket-detail-text048">26957156</span>
-            <span class="ticket-detail-text049">
-              RISCO RUIZ ELMER JAVIER - Usuario IE
+            <span class="ticket-detail-text048">
+                <ng-container *ngFor="let user_external of user_externals">
+                  {{user_external.dni}}
+                </ng-container>
             </span>
-            <span class="ticket-detail-text050">1107093</span>
+            <span class="ticket-detail-text049">
+                <ng-container *ngFor="let user_external of user_externals">
+                  {{user_external.username}} + {{user_external.username}}
+                </ng-container>
+            </span>
+            <span class="ticket-detail-text050">
+                <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.assignedTechId}}
+                </ng-container>
+            </span>
             <span class="ticket-detail-text051">
-              E.R.NEGOCIOS_15@OUTLOOK.COM
+                <ng-container *ngFor="let user_external of user_externals">
+                  {{user_external.email}}
+                </ng-container>
             </span>
           </div>
         </div>
@@ -134,13 +175,30 @@
           </div>
           <div class="ticket-detail-container23">
             <span class="ticket-detail-text059">
-              010701 : Administración IE -&gt; Seguridad -&gt; Mantenimiento de
-              Usuarios
+                <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.process}}
+                </ng-container>
             </span>
-            <span class="ticket-detail-text060">949036449</span>
-            <span class="ticket-detail-text061">3030: Bajo</span>
-            <span class="ticket-detail-text062">1010: Alto</span>
-            <span class="ticket-detail-text063">Pendiente</span>
+            <span class="ticket-detail-text060">
+                <ng-container *ngFor="let user_external of user_externals">
+                  {{user_external.phone}}
+                </ng-container>
+            </span>
+            <span class="ticket-detail-text061">
+            <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.impact}}
+                </ng-container>
+            </span>
+            <span class="ticket-detail-text062">
+            <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.urgency}}
+                </ng-container>
+            </span>
+            <span class="ticket-detail-text063">
+            <ng-container *ngFor="let ticket_detail of ticket_Details">
+                  {{ticket_detail.usiStatus}}
+                </ng-container>
+            </span>
           </div>
         </div>
       </div>
@@ -171,61 +229,38 @@
         <div class="ticket-detail-container32">
           <div class="ticket-detail-container33">
             <div class="ticket-detail-container34">
-              <span class="ticket-detail-text068">(3733303)</span>
+              <span class="ticket-detail-text068">
+              <ng-container *ngFor="let ticket_note of ticket_notes">
+                  {{ticket_note.id}}
+                </ng-container>
+              </span>
               <span class="ticket-detail-text069">
-                <span>MDS_SIAGIE05 (Informador)</span>
+                <span>
+                  <ng-container *ngFor="let ticket_note of ticket_notes">
+                    {{ticket_note.techName}}
+                  </ng-container>
+                </span>
                 <span class="ticket-detail-text071">
 
                 </span>
               </span>
-              <span class="ticket-detail-text072">2023-05-30 16:55</span>
+              <span class="ticket-detail-text072">
+                  <ng-container *ngFor="let ticket_note of ticket_notes">
+                    {{ticket_note.date}}
+                  </ng-container>
+              </span>
             </div>
             <div class="ticket-detail-container35">
               <span class="ticket-detail-text073">
                 <span>
-                  Se solicita actualizar login usuario de la docente ODIAGA RIOS
-                  FATIMA según documento de identidad
+                  <ng-container *ngFor="let ticket_note of ticket_notes">
+                    {{ticket_note.comment}}
+                  </ng-container>
                 </span>
-                <br />
-                <span>DNI 70208682</span>
-                <br />
-                <span>Dice: 2691</span>
-                <br />
-                <span>Debe decir: 70208682</span>
-                <br />
-                <span>C.M: 1107093</span>
               </span>
             </div>
           </div>
-          <div class="ticket-detail-container36">
-            <div class="ticket-detail-container37">
-              <span class="ticket-detail-text083">(3733303)</span>
-              <span class="ticket-detail-text084">
-                LBULEJE (Manager) [privado]
-              </span>
-              <span class="ticket-detail-text085">2023-05-30 16:55</span>
-            </div>
-            <div class="ticket-detail-container38">
-              <span class="ticket-detail-text086">
-                LBULEJE_13062023_TK3160477
-              </span>
-            </div>
-          </div>
-          <div class="ticket-detail-container39">
-            <div class="ticket-detail-container40">
-              <span class="ticket-detail-text087">(3733303)</span>
-              <span class="ticket-detail-text088">
-                LBULEJE (Manager) [privado]
-              </span>
-              <span class="ticket-detail-text089">2023-05-30 16:55</span>
-            </div>
-            <div class="ticket-detail-container41">
-              <span class="ticket-detail-text090">
-                Se actualizó el login de ODIAGA RIOS FATIMA. Puede añadir a
-                mantenimiento de usuarios.
-              </span>
-            </div>
-          </div>
+
           <div class="ticket-detail-container42">
             <textarea
               rows="6"

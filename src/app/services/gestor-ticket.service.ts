@@ -3,6 +3,11 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { map, switchMap, tap } from "rxjs/operators";
 import { Institution } from "../models/institution";
+import { Ticket } from "../models/ticket";
+import { Ticket_Detail } from "../models/ticket_detail";
+import { User_External } from "../models/user-external";
+import { Ticket_Notes } from "../models/ticket_notes";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -100,6 +105,70 @@ export class GestorTicketService {
         
         if (resp.data && resp.data.length > 0) {
           return resp.data.map((row: Object) => Institution.getJson(row));
+        } else {
+          return [];
+        }
+      })
+    )
+  }
+
+  //GET ALL
+
+  GetTickest(){
+    return this.http.get(`${environment.API_GESTOR_TICKETS}/tickets`)
+  }
+
+  //GET BY ID
+
+  GetTickte_BY_ID(ticketID: number){
+    return this.http.get(`${environment.API_GESTOR_TICKETS}/tickets/${ticketID}`).pipe(
+      map((resp:any) => {
+        
+        if (resp.data && resp.data.length > 0) {
+          return resp.data.map((row: Object) => Ticket.getJson(row));
+        } else {
+          console.log(resp.data) // Respuesta
+          return [];
+        }
+      })
+    )
+  }
+
+  GetTicketDetail_BY_ID( ticket_detail_Id: number){
+
+    return this.http.get(`${environment.API_GESTOR_TICKETS}/tickets/${ticket_detail_Id}/ticketDetail`).pipe(
+      map((resp:any) => {
+        
+        if (resp.data && resp.data.length > 0) {
+          return resp.data.map((row: Object) => Ticket_Detail.getJson(row));
+        } else {
+
+          return [];
+        }
+      })
+    )
+  }
+
+  GetUserExternal_BY_ID(user_externalId: number){
+
+    return this.http.get(`${environment.API_GESTOR_TICKETS}/user-externals/${user_externalId}`).pipe(
+      map((resp:any) => {
+        
+        if (resp.data && resp.data.length > 0) {
+          return resp.data.map((row: Object) => User_External.getJson(row));
+        } else {
+          return [];
+        }
+      })
+    )
+  }
+
+  GetNotes_by_TicketID(Notes_by_TicketId: number){
+    return this.http.get(`${environment.API_GESTOR_TICKETS}/tickets/${Notes_by_TicketId}/notes`).pipe(
+      map((resp:any) => {
+        
+        if (resp.data && resp.data.length > 0) {
+          return resp.data.map((row: Object) => Ticket_Notes.getJson(row));
         } else {
           return [];
         }

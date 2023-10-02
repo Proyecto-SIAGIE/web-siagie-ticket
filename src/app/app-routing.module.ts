@@ -12,6 +12,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: "ticket-by-user",
+    loadChildren: () =>
+      import("./pages/management/ticket-register/ticket-user-register/ticket-user-register.module").then(
+        (mod) => mod.TicketUserResgisterMoodule
+      ), 
+  },
+  {
     path: "login",
     loadChildren: () =>
       import("./pages/security/login/login.module").then(
@@ -19,11 +26,18 @@ const routes: Routes = [
       ),
   },
   {
-    path: "ticket",
+    path: "ticket/:id",
     loadChildren: () =>
     import("./pages/management/ticket-detail/ticket-detail-external/ticket-detail-external.module").then(
       (mod) => mod.TicketDetailExternalModule
     ),
+  },
+  {
+    path:"table-ticket-user/:id",
+    loadChildren: () =>
+    import("./pages/management/ticket-detail/table-ticket/table-ticket.module").then(
+      (mod) => mod.TableTicketModule
+    )
   }
 ]
 

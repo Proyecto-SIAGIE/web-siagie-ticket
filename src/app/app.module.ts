@@ -12,12 +12,14 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { GestorTicketService } from './services/gestor-ticket.service';
+import { GestorGlpiService } from './services/gestor-glpi.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    BodyComponent
+    BodyComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
       disabled: environment.production
     })
   ],
-  providers: [],
+  providers:[GestorTicketService, GestorGlpiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
