@@ -1,6 +1,7 @@
 <section class="ticket-detail-container">
     <main class="ticket-detail-main">
-      <section class="itle-user">
+      <section class="wrapper">
+      <section class="title-user">
         <h1 class="title-1">Reporte de Tickets</h1>
         <h2 class="title-user">
           Bienvenido Usuario DRE - Luis Martínez
@@ -27,39 +28,52 @@
             <h3>Hasta:</h3>
             <input type="date" class= "input-05 input" name="date">
           </span>
-          <button type="button" class="table-ticket-button1 button">
-              <span class="table-ticketl-text01">
+          <button type="button" class="table-ticket-button1 button">    
+          <span class="table-ticket-text01">
                 <span>Buscar</span>
-                <br />
               </span>
           </button>
         </section>
         <section class="table-tickets">
-          <table>
-            <tr>
-              <th>#</th>
-              <th> Ticket </th>
-              <th> Usuario </th>
-              <th> Tema </th>
-              <th> SubTema </th>
-              <th> Estado </th>
-              <th> Región </th>
-              <th> IGED </th>
-              <th> Fecha respuesta </th>
+          <table class="table-desktop">
+            <thead class="table-head">
+                <tr>
+                  <th>#</th>
+                  <th> Ticket </th>
+                  <th> Usuario </th>
+                  <th> Tema </th>
+                  <th> SubTema </th>
+                  <th> Estado </th>
+                  <th> Región </th>
+                  <th> IGED </th>
+                  <th> Fecha respuesta </th>
+              </tr>
+            </thead>
+            <tr class="details">
+              <td data-titulo= "Id:">1</td>
+              <td data-titulo= "Ticket:">123</td>
+              <td data-titulo= "Usuario:">Omar</td>
+              <td data-titulo= "Tema:">Computación</td>
+              <td data-titulo= "Subtema:">Excel</td>
+              <td data-titulo= "Estado:">Pendiente</td>
+              <td data-titulo= "Región:">Lima</td>
+              <td data-titulo= "Iged:">Lurin I.E.</td>
+              <td data-titulo= "Fecha Respuesta:">12/12/23</td>
             </tr>
             <tr class="details">
-              <td>1</td>
-              <td>123</td>
-              <td>Omar</td>
-              <td>Computación</td>
-              <td>Excel</td>
-              <td>Pendiente</td>
-              <td>Lima</td>
-              <td>Lurin I.E.</td>
-              <td>12/12/23</td>
+              <td  data-titulo= "Id:">2</td>
+              <td data-titulo= "Ticket:">123</td>
+              <td data-titulo= "Usuario:">Omar</td>
+              <td data-titulo= "Tema:">Computación</td>
+              <td data-titulo= "Subtema:">Excel</td>
+              <td data-titulo= "Estado:">Pendiente</td>
+              <td data-titulo= "Región:">Lima</td>
+              <td data-titulo= "Iged:">Lurin I.E.</td>
+              <td data-titulo= "Fecha Respuesta:">12/12/23</td>
             </tr>
-        </table>
+          </table>
         </section>
+      </section>
     </main>
   <footer class="footer"></footer>
 </section>
