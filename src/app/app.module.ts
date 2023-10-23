@@ -12,12 +12,15 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    BodyComponent
+    BodyComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HttpClientModule,
     NgSelectModule,
     FormsModule,
+  
     NgxsModule.forRoot([],
       { developmentMode: !environment.production }
     ),
@@ -33,7 +37,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     }),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

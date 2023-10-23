@@ -1,288 +1,270 @@
-<div id="body" class="tech-register-ticket-container">
-  <main class="tech-register-ticket-main">
-    <section class="tech-register-ticket-section">
-      <div id="description" class="tech-register-ticket-description">
-        <div class="tech-register-ticket-container01">
-          <img alt="image" src="assets/Usuario-400w.png" class="tech-register-ticket-image" />
-          <h2 class="tech-register-ticket-text">Nuevo ticket</h2>
-          <span class="tech-register-ticket-text01">
-            <span class="tech-register-ticket-text02">
-              (*)
-            </span>
-            <span class="tech-register-ticket-text03">Campos obligatorios</span>
-          </span>
-        </div>
-        <div class="tech-register-ticket-container02">
-          <div class="tech-register-ticket-container03">
-            <h1 class="tech-register-ticket-text04">Formulario de ayuda </h1>
-            <p class="tech-register-ticket-text05">
-              Solo los usuarios registrados en el SIAGIE con los siguientes
-              roles podrán registrar su requerimiento o reportar una incidencia.
-            </p>
-          </div>
-          <p class="tech-register-ticket-text06">
-            Especialista Siagie, Director Inicial, Director Primaria, Director
-            Secundaria, Director EBE - Inicial,  Director EBE - Primaria,
-            Director EBA - Avanzado, Director EBA - Inicial / Intermedio
+<div class="tech-register-ticket-main">
+  <div class="tech-register-ticket-section">
+
+
+    <div id="description" class="tech-register-ticket-description">
+
+      <div class="tech-register-ticket-container01">
+        <img alt="image" src="assets/Usuario-400w.png" class="tech-register-ticket-image" />
+      </div>
+
+
+      <div class="tech-register-ticket-container02">
+        <h1 class="tech-register-ticket-text04">Formulario de ayuda </h1>
+        <div class="tech-register-ticket-container03">
+
+          <p class="tech-register-ticket-text05">
+            Solo los usuarios registrados en el SIAGIE con los siguientes
+            roles podrán registrar su requerimiento o reportar una incidencia.
           </p>
         </div>
+        <p class="tech-register-ticket-text06">
+          Especialista Siagie, Director Inicial, Director Primaria, Director
+          Secundaria, Director EBE - Inicial,  Director EBE - Primaria,
+          Director EBA - Avanzado, Director EBA - Inicial / Intermedio
+        </p>
+
+        <span class="tech-register-ticket-text48">
+          <span>
+            Recuerde que su consulta solo deberá hacer referencia
+          </span>
+          <span class="tech-register-ticket-text50">
+            a una sola persona
+          </span>
+          <span>
+            , sea alumno, director, o especialista. Si tiene a otros
+            usuarios con el mismo inconveniente, deberá realizar el
+            registro de la petición en un nuevo formulario.
+          </span>
+        </span>
+
       </div>
-      <div id="form-data" class="tech-register-ticket-form-data">
-        <div class="tech-register-ticket-container04">
-          <form id="user-information" enctype="text/plain" class="tech-register-ticket-form">
-            <div class="tech-register-ticket-container05">
-              <label for="user-information" class="tech-register-ticket-text07">
-                <span class="tech-register-ticket-text08">DNI de usuario</span>
-                <span> </span>
-                <span class="tech-register-ticket-text10">*</span>
-                <span class="tech-register-ticket-text11">:</span>
-              </label>
-              <div class="tech-register-ticket-container06">
-                <input type="text" name="dni_input" required placeholder="Ingrese el dni"
-                  class="tech-register-ticket-textinput input" [(ngModel)]="userdni"/>
-                <button type="button" (click)="getUserPassportData()" class="tech-register-ticket-button button">
-                  <span class="tech-register-ticket-text12">
-                    <span>Validar</span>
-                    <br />
-                  </span>
-                </button>
-              </div>
+
+    </div>
+
+
+
+    <div id="form-data" class="tech-register-ticket-form-data">
+      <h2 class="tech-register-ticket-text">Nuevo ticket</h2>
+      <form autocomplete="off" [formGroup]="formTicket" class="formTicket" (ngSubmit)="registerTicket()">
+        <div class="tech-register-ticket-form-group">
+
+          <div class="tech-register-ticket-container04">
+
+            <div class="tech-register-ticket-obligatorio1">
+              <span class="tech-register-ticket-text02">
+                (*)
+              </span>
+              <span class="tech-register-ticket-text03">Campos obligatorios</span>
             </div>
+
+
+            <form autocomplete="off" (ngSubmit)="this.getUserPassportData()" class="login-form">
+              <div class="tech-register-ticket-container05">
+                <div class="tech-register-ticket-container06">
+                  <mat-form-field class="input-4" appearance="fill">
+                    <mat-label>DNI</mat-label>
+                    <input matInput [(ngModel)]="this.userdni" name="userdni" placeholder="DNI del usuario a buscar"
+                      maxlength="8">
+                  </mat-form-field>
+                  <button type="submit" class="tech-register-ticket-button button">
+                    <span class="tech-register-ticket-text12">
+                      <span>Validar</span>
+                      <br />
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </form>
+
             <div class="tech-register-ticket-container07">
-              <label for="user-information" class="tech-register-ticket-text15">
-                <span class="tech-register-ticket-text16">Usuario</span>
-                <span> </span>
-                <span class="tech-register-ticket-text18">*</span>
-                <span class="tech-register-ticket-text19">:</span>
-              </label>
-              <input [(ngModel)]="username" type="text" name="username_input" required placeholder="-" disabled="true"
-                class="tech-register-ticket-textinput1 input" />
+              <mat-form-field class="input-1" appearance="fill">
+                <mat-label>Usuario</mat-label>
+                <input blockTagHtml formControlName="username" matInput required readonly>
+                <mat-error *ngIf="formTicket.get('username')?.hasError('required')">El usuario es requerido, se rellena al presionar validar.</mat-error>
+              </mat-form-field>
+
             </div>
             <div class="tech-register-ticket-container08">
-              <label for="user-information" class="tech-register-ticket-text20">
-                <span class="tech-register-ticket-text21">Nombres</span>
-                <span> </span>
-                <span class="tech-register-ticket-text23">*</span>
-                <span class="tech-register-ticket-text24">:</span>
-              </label>
-              <input [(ngModel)]="fullname" type="text" name="name_input" required placeholder="-" disabled="true"
-                class="tech-register-ticket-textinput2 input" />
+
+              <mat-form-field class="input-1" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input blockTagHtml formControlName="name" matInput required readonly>
+                <mat-error *ngIf="formTicket.get('username')?.hasError('required')">El nombre es requerido, se rellena al presionar validar.</mat-error>
+              </mat-form-field>
+
             </div>
             <div class="tech-register-ticket-container10">
-              <label for="user-information" class="tech-register-ticket-text30">
-                <span class="tech-register-ticket-text31">
-                  Correo
-                </span>
-                <br class="tech-register-ticket-text32" />
-                <span class="tech-register-ticket-text33">electrónico</span>
-                <span> </span>
-                <span class="tech-register-ticket-text35">*</span>
-                <span class="tech-register-ticket-text36">:</span>
-              </label>
-              <input type="email" [(ngModel)]="usermail" name="email_input" required placeholder="-"
-                class="tech-register-ticket-textinput3 input" />
+
+              <mat-form-field class="input-1" appearance="fill">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput blockTagHtml="this.usermail" formControlName="usermail" required>
+                <mat-error *ngIf="formTicket.get('usermail')?.hasError('required')">El correo electrónico es
+                  requerido</mat-error>
+                <mat-error *ngIf="formTicket.get('usermail')?.hasError('email')">El correo electrónico no está en un
+                  formato correcto</mat-error>
+              </mat-form-field>
+
             </div>
             <div class="tech-register-ticket-container09">
-              <label for="user-information" class="tech-register-ticket-text25">
-                <span class="tech-register-ticket-text26">Tipo de sede</span>
-                <span> </span>
-                <span class="tech-register-ticket-text28">*</span>
-                <span class="tech-register-ticket-text29">:</span>
-              </label>
-              <select class="tech-register-ticket-select" (ngModelChange)="onSelectSedeChange($event)"
-                [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOpt" [disabled]="selectSedeStatus">
-
-                <option *ngFor="let opcion of sedeOptions" [value]="opcion">{{ opcion }}</option>
-                <!--<option value="DRE" selected>DRE</option>
-                <option value="UGEL">UGEL</option>
-                <option value="IIEE">IIEE</option>-->
-              </select>
+              <mat-form-field class="input-1">
+                <mat-label>Tipo de sede</mat-label>
+                <mat-select [value]="this.sedeFirstOption" [disabled]="true" required>
+                  <mat-option *ngFor="let sede of this.sedeOptions" [value]="sede">{{ sede.sede }}</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
-
-            <ng-container *ngIf="selectedOpt === 'DRE'">
-              <div class="tech-register-ticket-container09">
-                <label for="user-information" class="tech-register-ticket-text25">
-                  <span class="tech-register-ticket-text26">Seleccionar Ugel</span>
-                  <span> </span>
-                  <span class="tech-register-ticket-text28">*</span>
-                  <span class="tech-register-ticket-text29">:</span>
-                </label>
-                <select class="tech-register-ticket-select" [ngModelOptions]="{standalone: true}"
-                  [(ngModel)]="selectedUgel">
-
-                  <option *ngFor="let opcion of ugelOptions" [value]="opcion">{{ opcion }}</option>
-                  <!--<option value="DRE" selected>DRE</option>
-                  <option value="UGEL">UGEL</option>
-                  <option value="IIEE">IIEE</option>-->
-                </select>
-              </div>
-            </ng-container>
 
 
             <div class="tech-register-ticket-container11">
-              <label for="user-information" class="tech-register-ticket-text37">
-                <span>
-                  Código
-                </span>
-                <br />
-                <span>modular </span>
-                <span class="tech-register-ticket-text41">*</span>
-                <span class="tech-register-ticket-text42">:</span>
-              </label>
+              <mat-form-field class="input-1">
+                <mat-label>Codigo Modular</mat-label>
+                <mat-select [value]="this.institutionFirstOption" required formControlName="institutionId">
+                  <mat-option *ngFor="let institution of this.institutions"
+                    [value]="institution">{{this.institution.codeAndName}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="inputNotValid('formInstitutions', 'institutionId')">Debe seleccionar una IE.</mat-error>
+              </mat-form-field>
 
-              <ng-select
-                  
-                  placeholder="Selecione IE..."
-                  [items]="institutions"
-                  class="tech-register-ticket-textinput4"
-                  [clearable]="false"
-                  bindLabel="codeAndName"
-                  bindValue="modularCode"
-                />
-              <!--<input type="text" [(ngModel)]="modularCode" name="ie_input" required placeholder="-" class="tech-register-ticket-textinput4 input"
-                [disabled]="isTypeIE" />-->
             </div>
+
+
+
             <div class="tech-register-ticket-container12">
-              <label for="user-information" class="tech-register-ticket-text43">
-                <span>Teléfono </span>
-                <span class="tech-register-ticket-text45">*</span>
-                <span class="tech-register-ticket-text46">:</span>
-              </label>
-              <input [(ngModel)]="userphone" type="text" name="phone_input" required placeholder="-"
-                class="tech-register-ticket-textinput5 input" />
-            </div>
-            <div class="tech-register-ticket-container13">
-              <label for="user-information" class="tech-register-ticket-text47">
-                Anexo:
-              </label>
-              <input [(ngModel)]="userphoneanexo" type="text" name="anexo_input" required placeholder="-"
-                class="tech-register-ticket-textinput6 input" />
-            </div>
-          </form>
-        </div>
-        <div class="tech-register-ticket-container14">
-          <div class="tech-register-ticket-container15">
-            <div id="description-form" class="tech-register-ticket-container16">
-              <span class="tech-register-ticket-text48">
-                <span>
-                  Recuerde que su consulta solo deberá hacer referencia
-                </span>
-                <span class="tech-register-ticket-text50">
-                  a una sola persona
-                </span>
-                <span>
-                  , sea alumno, director, o especialista. Si tiene a otros
-                  usuarios con el mismo inconveniente, deberá realizar el
-                  registro de la petición en un nuevo formulario.
-                </span>
-              </span>
-            </div>
-            <div class="tech-register-ticket-container17">
-              <div class="tech-register-ticket-container18">
-                <label for="user-information" class="tech-register-ticket-text52">
-                  <span class="tech-register-ticket-text53">Tema</span>
-                  <span> </span>
-                  <span class="tech-register-ticket-text55">*</span>
-                </label>
+              <mat-form-field appearance="fill">
+                <mat-label>Telefono</mat-label>
+                <input matInput formControlName="userphone" required blockTagHtml maxlength="9" numericDirective>
+                <mat-error *ngIf="formTicket.get('userphone')?.hasError('required')">El número telefónico es
+                  requerido</mat-error>
 
-                <ng-select
-                  class="tech-register-ticket-select1"
-                  placeholder="Selecione..."
-                  [items]="categories"
-                  (change)="onSelectedCategory('category', $event)"
-                  [clearable]="false"
-                  bindLabel="name"
-                  bindValue="id"
-                />
+                <mat-error *ngIf="formTicket.get('userphone')?.hasError('pattern')">El número telefónico debe empezar
+                  con 9 y tener 9 digitos</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Anexo</mat-label>
+                <input matInput formControlName="phoneanexo" placeholder="123" blockTagHtml maxlength="3"
+                  numericDirective>
+                <mat-error *ngIf="formTicket.get('phoneanexo')?.hasError('maxlength')">Se requiere máx 3
+                  digitos.</mat-error>
+              </mat-form-field>
+
+            </div>
+
+          </div>
+
+          <div class="tech-register-ticket-container14">
+            <div class="tech-register-ticket-container15">
+
+              <div class="tech-register-ticket-container17">
+
+                <mat-form-field class="tech-register-ticket-select1">
+                  <mat-label>Selecione una categoría</mat-label>
+                  <mat-select required formControlName="categoriesId" (selectionChange)="onSelectedCategory('category', $event)">
+                    <mat-option *ngFor="let category of this.categories"
+                      [value]="category">{{this.category.name}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="inputNotValid('formCategories', 'categoriesId')">Debe seleccionar una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="subCategories1.length > 0" class="tech-register-ticket-select2">
+                  <mat-label>Selecione una subcategoría</mat-label>
+                  <mat-select required formControlName="subCategories1Id" (selectionChange)="onSelectedCategory('subCategoria1', $event)">
+                    <mat-option *ngFor="let category of this.subCategories1"
+                      [value]="category">{{this.category.name}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="inputNotValid('formCategories', 'subCategories1Id')">Debe seleccionar una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="subCategories2.length > 0" class="tech-register-ticket-select2">
+                  <mat-label>Selecione una subcategoría</mat-label>
+                  <mat-select required formControlName="subCategories2Id" (selectionChange)="onSelectedCategory('subCategoria2', $event)">
+                    <mat-option *ngFor="let category of this.subCategories2"
+                      [value]="category">{{this.category.name}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="inputNotValid('formCategories', 'subCategories2Id')">Debe seleccionar una opción</mat-error>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="subCategories3.length > 0" class="tech-register-ticket-select2">
+                  <mat-label>Selecione una subcategoría</mat-label>
+                  <mat-select required formControlName="subCategories3Id">
+                    <mat-option *ngFor="let category of this.subCategories3"
+                      [value]="category">{{this.category.name}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="inputNotValid('formCategories', 'subCategories3Id')">Debe seleccionar una opción</mat-error>
+                </mat-form-field>
 
               </div>
-              <ng-select *ngIf="subCategories1.length > 0"
-                class="tech-register-ticket-select2"
-                placeholder="Selecione subcategoria..."
-                [items]="subCategories1"
-                (change)="onSelectedCategory('subCategoria1', $event)"
-                [clearable]="false"
-                bindLabel="name"
-                bindValue="id"
-              >
 
-              </ng-select>
+              <div>
+                <mat-form-field class="input-3">
+                  <mat-label>Consultas o reclamos </mat-label>
 
-              <ng-select *ngIf="subCategories2.length > 0"
-                class="tech-register-ticket-select2"
-                placeholder="Selecione subcategoria..."
-                [items]="subCategories2"
-                (change)="onSelectedCategory('subCategoria2', $event)"
-                [clearable]="false"
-                bindLabel="name"
-                bindValue="id"
-              ></ng-select>
-
-              <ng-select *ngIf="subCategories3.length > 0"
-                class="tech-register-ticket-select2"
-                placeholder="Selecione subcategoria..."
-                [items]="subCategories3"
-                [clearable]="false"
-                bindLabel="name"
-                bindValue="id"
-              ></ng-select>
-
-
-              <div class="tech-register-ticket-container19">
-                <label for="user-information" class="tech-register-ticket-text56">
-                  <span>
-                    Consulta
-                  </span>
-                  <span class="tech-register-ticket-text58">*</span>
-                </label>
-                <textarea [(ngModel)]="requestuser" rows="6" placeholder="Escribe tu consulta..."
-                  class="tech-register-ticket-textarea textarea"></textarea>
+                  <textarea class="textarea" rows="10" cols="10" [maxLength]="500" formControlName="usercomment"
+                    blockTagHtml matInput required></textarea>
+                  <mat-hint align="end">Total de caracteres: {{formTicket.get('usercomment')?.value?.length }} de 500
+                    max.</mat-hint>
+                  <mat-error *ngIf="formTicket.get('usercomment')?.hasError('required')">El campo de solicitud es
+                    requerido.</mat-error>
+                  <mat-error *ngIf="formTicket.get('usercomment')?.hasError('maxlength')">El campo de solicitud no puede
+                    tener más de 500 caracteres.</mat-error>
+                </mat-form-field>
               </div>
+
               <div class="tech-register-ticket-container20">
-                <label for="user-information" class="tech-register-ticket-text59">
-                  <span>Subir </span>
-                  <br />
-                  <span>archivos</span>
-                  <br />
-                </label>
+
                 <div class="tech-register-ticket-container21">
                   <div class="tech-register-ticket-container22">
+
                     <label for="fileInput" class="tech-register-ticket-button1 button">
                       <span class="tech-register-ticket-text64">
                         <span>Seleccionar archivos</span>
                         <br />
                       </span>
                     </label>
-                    <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
-                      multiple />
-                    <span class="tech-register-ticket-text67">
-                      <span *ngIf="selectedFiles !== null && selectedFiles.length > 0">
 
-                        <ng-container *ngFor="let file of selectedFiles; let last = last">
-                          {{ file.name }}{{ !last ? ',   ' : '' }}
-                        </ng-container>
-                      </span>
-                      <span *ngIf="!selectedFiles || selectedFiles.length === 0">
+                    <input type="file" id="fileInput" style="display: none" (change)="onFileSelected($event)"
+                      multiple />
+
+                    <div *ngIf="!selectedFiles || selectedFiles.length === 0">
+                      <span class="tech-register-ticket-text67">
                         Ningún archivo seleccionado
+                        <br />
                       </span>
-                      <br />
-                    </span>
+                    </div>
                   </div>
+
+                  <div class="container21__files-container" *ngIf="selectedFiles !== null && selectedFiles.length > 0">
+                    <div class="files-container__element" *ngFor="let file of selectedFiles">
+                      <div class="element__content">
+                        <i class="{{this.getIconName(file.type)}}"></i>
+                        <span class="content__name">{{ file.name }}</span>
+                        <span class="content__size">{{ (file.size/1024).toFixed(2) }} Kb</span>
+                      </div>
+                      <i class="fas fa-times element__remove" (click)="onRemoveFile(file)"></i>
+                    </div>
+                  </div>
+
                   <span class="tech-register-ticket-text71">
                     Ingrese un archivo con formato (pdf, doc, xls, xlsx, jpg,
                     png, bmp) menor a 5 mb.
                   </span>
                 </div>
               </div>
-              <button type="submit" class="tech-register-ticket-button2 button" (click)="storeTicket()">
-                <img alt="image" src="assets/send-svgrepo.svg" class="tech-register-ticket-image1" />
-                <span>Enviar</span>
-              </button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="formTicket__button">
+          <button type="submit" class="tech-register-ticket-button2 button">
+            <img alt="image" src="assets/send-svgrepo.svg" class="tech-register-ticket-image1" />
+            <span>Enviar</span>
+          </button>
+        </div>
+      </form>
 
-  </main>
+    </div>
+
+
+  </div>
+
 </div>

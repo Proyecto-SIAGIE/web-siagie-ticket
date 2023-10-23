@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { Observable, map } from 'rxjs';
 import { HelperService } from './helper.service';
+import { RolePassport } from '../models/role-passport';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,46 @@ export class SecurityService {
 
   constructor(private http: HttpClient, private helper: HelperService) { }
 
-  postHandler(url: string, boot: boolean, jsonRequest: string, accessToken: string): Observable<any> {
+  loginPassport(data: any) {
+
+    return this.http.post(`${environment.API_GESTOR_PASSPORT}/auth`, data, { headers: new HttpHeaders() })
+    .pipe(
+      map((respAuth) => {
+        return respAuth;
+      })
+    )
+  }
+
+  searchUserPassport(dni: string){
+    return this.http.get(`${environment.API_GESTOR_PASSPORT}/searchUser/${dni}`,{headers: new HttpHeaders() })
+    .pipe(
+      map((respUser) => {
+        return respUser;
+      })
+    )
+  }
+
+  getRolesFromUser(userId: string){
+    return this.http.get(`${environment.API_GESTOR_PASSPORT}/user/${userId}/roles`,{headers: new HttpHeaders() })
+    .pipe(
+      map((respRoles) => {
+        return respRoles;
+      })
+    )
+
+
+  }
+
+  /*postHandler(url: string, boot: boolean, jsonRequest: string, accessToken: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json;charset-UTF-8',
       'Authorization': `Bearer ${accessToken}`
     });
-
+    debugger
     return this.http.post(url, jsonRequest, { headers: headers }).pipe(
       map((response: any) => {
+        console.log(response);
+        debugger
         const result = response as string;
         return boot ? JSON.parse(result) : result;
       })
@@ -39,7 +72,7 @@ export class SecurityService {
 
   }*/
 
-  fnApiSeguridadControlBoot(): Observable<any> {
+  /*fnApiSeguridadControlBoot(): Observable<any> {
     const urlBoot: string = environment.PASSPORT_URL_SEGURIDAD + '/api/seguridad/control/Boot';
     //Obtenemos el token passport
     return this.postHandler(urlBoot, true, '', '');
@@ -62,16 +95,16 @@ export class SecurityService {
       FINGERPRINT_NAVEGADOR: "chrome"
     }
 
-    const jsonLogin = await this.helper.messagePassport(bootKey,loginRequest);
+    const jsonLogin = await this.helper.messagePassport(bootKey, loginRequest);
 
     this.postHandler(urlLoginData, false, jsonLogin, tokentJwt).subscribe({
       next: async (response: any) => {
-        console.log('this')
         console.log(response);
         const loginResponse = await this.helper.resultPassport(response);
         console.log(loginResponse)
       },
       error: (error: any) => {
+
         console.log(error);
       }
     });
@@ -107,7 +140,7 @@ export class SecurityService {
     });
 
 
-  }
+  } */
 
 
 }

@@ -8,6 +8,7 @@ import { Institution } from "../models/institution";
   providedIn: "root",
 })
 export class GestorTicketService {
+
   constructor(private http: HttpClient) {}
 
   registerUser(dataUser: any){
@@ -74,8 +75,16 @@ export class GestorTicketService {
     )
   }
 
-  sendTicketToGlpi(userId: string, ticketId: string, modularCode: string) {
+  sendTicketToGlpi(userId: string, ticketId: string, modularCode: string, files: File[] | null) {
     const formData = new FormData();
+
+    //let _filename: any[] = [];
+    if(files?.length != 0 ){
+      files?.forEach((file: File) => {
+        formData.append("files", file);
+        //_filename.push(file.name);
+      });
+    }
 
     formData.append('userId', userId);
     formData.append('ticketId', ticketId);
@@ -97,12 +106,25 @@ export class GestorTicketService {
 
     return this.http.get(`${environment.API_GESTOR_TICKETS}/api-padron/DRE/${dreCode}/UGEL/${ugelCode}/InstitucionesEducativas`,{params: params}).pipe(
       map((resp:any) => {
-        
+
         if (resp.data && resp.data.length > 0) {
           return resp.data.map((row: Object) => Institution.getJson(row));
         } else {
           return [];
         }
+      })
+    )
+  }
+
+  getInstitutionByModularCode(modularCode: string, anexo: string ) {
+    const params = new HttpParams()
+    .set('anexo', anexo)
+
+    return this.http.get(`${environment.API_GESTOR_TICKETS}/api-padron/IE/${modularCode}`,{
+      params:params
+    }).pipe(
+      map((respAssign: any) => {
+        return Institution.getJsonMaterialesPadron(respAssign.data[0]);
       })
     )
   }

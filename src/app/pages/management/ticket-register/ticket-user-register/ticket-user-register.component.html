@@ -1,1 +1,228 @@
-<p>ticket-user-register works!</p>
+  <div class="ticket-user-register-form">
+    <div class="tech-register-ticket-section">
+        <div id="description" class="tech-register-ticket-description">          
+            <div class="tech-register-ticket-container01">
+              <img alt="image" src="assets/Usuario-400w.png" class="tech-register-ticket-image" />
+            </div>
+            <div class="tech-register-ticket-container02">          
+                <h1 class="tech-register-ticket-text04">Formulario de ayuda </h1>         
+              <div class="tech-register-ticket-container03">          
+                <p class="tech-register-ticket-text05">
+                  Solo los usuarios registrados en el SIAGIE con los siguientes
+                  roles podrán registrar su requerimiento o reportar una incidencia.
+                </p>
+              </div>
+              <p class="tech-register-ticket-text06">
+                Especialista Siagie, Director Inicial, Director Primaria, Director
+                Secundaria, Director EBE - Inicial,  Director EBE - Primaria,
+                Director EBA - Avanzado, Director EBA - Inicial / Intermedio
+              </p>        
+              <div class="ticket-user-register-userdetail">
+              <mat-form-field class="input-2" appearance="fill">
+                <mat-label>Usuario</mat-label>
+                <input  matInput placeholder="Last name, First name, correo" formControlName="firstCtrl" required >
+              </mat-form-field>
+              <mat-form-field class="input-1" appearance="fill">
+                <mat-label>Nombres</mat-label>
+                <input  matInput placeholder="Last name, First name, correo"  required >
+              </mat-form-field>
+            </div>
+            </div>
+        </div>
+        <mat-horizontal-stepper linear class="ticket-user-register-stepper">
+        <mat-step   label="First Steep" completed="true">
+          <p>Datos de institucion Educativa</p>       
+          <div class="ticket-user-register-form-note">
+            <span class="tech-register-ticket-text48">
+              <span>
+                Recuerde que su consulta solo deberá hacer referencia
+              </span>
+              <span class="tech-register-ticket-text50">
+                a una sola persona
+              </span>
+              <span>
+                , sea alumno, director, o especialista. Si tiene a otros
+                usuarios con el mismo inconveniente, deberá realizar el
+                registro de la petición en un nuevo formulario.
+              </span>
+            </span>
+          </div>
+          <form action="">
+            <div class="tech-register-ticket-obligatorio1">
+              <span class="tech-register-ticket-text02">
+                        (*)
+              </span>
+              <span class="tech-register-ticket-text03">Campos obligatorios</span>
+          </div>
+
+
+            <div class="ticket-user-register-form1">
+            <div class=" ticket-user-register-form1-1">
+          <mat-form-field>
+            <mat-label >Tipo de Sede</mat-label>
+            <mat-select>
+              <mat-option value="one">First option</mat-option>
+              <mat-option value="two">Second option</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Código Modular</mat-label>
+            <mat-select>
+              <mat-option value="one">First option</mat-option>
+              <mat-option value="two">Second option</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="input-1  tech-register-input">
+            <mat-label>Telefono</mat-label>
+            <input matInput placeholder="Last name, First name"  required>
+          </mat-form-field>
+            </div>
+            <div class="ticket-user-register-form1-2">
+              <mat-form-field class="input-1" appearance="fill">
+                <mat-label>Correo electrónico</mat-label>
+                <input  matInput placeholder="Last name, First name, correo" formControlName="firstCtrl" required >
+              </mat-form-field>
+              <mat-form-field class="input-1" appearance="fill">
+                <mat-label>Correo electrónico alternativo</mat-label>
+                <input  matInput placeholder="Last name, First name, correo"  required >
+              </mat-form-field>
+              <mat-form-field class="input-2">
+                <mat-label>Anexo</mat-label>
+                <input matInput placeholder="Last name, First name"  required>
+              </mat-form-field>
+            </div>
+          </div>     
+          <button   mat-flat-button mat-button matStepperNext color="accent">Continuar</button>
+        </form>
+        </mat-step>
+        <mat-step label="Second Steep" completed="false">
+          <p>Datos consulta</p>
+          <div class="ticket-user-register-form-note">
+            <span class="tech-register-ticket-text48">
+              <span>
+                Recuerde que su consulta solo deberá hacer referencia
+              </span>
+              <span class="tech-register-ticket-text50">
+                a una sola persona
+              </span>
+              <span>
+                , sea alumno, director, o especialista. Si tiene a otros
+                usuarios con el mismo inconveniente, deberá realizar el
+                registro de la petición en un nuevo formulario.
+              </span>
+            </span>
+          </div>
+
+          <div class="tech-register-ticket-obligatorio1">
+            <span class="tech-register-ticket-text02">
+                      (*)
+            </span>
+            <span class="tech-register-ticket-text03">Campos obligatorios</span>
+        </div>
+        
+         <div class="ticket-user-register-form2">
+            <div class="tech-register-ticket-container14">
+              <div class="tech-register-ticket-container15">            
+                <div class="tech-register-ticket-container17">
+                  <div class="tech-register-ticket-container18">
+                    <mat-form-field class="input-1">
+                      <mat-label>Categoria</mat-label>
+                      <mat-select>
+                        <mat-option value="one">Subcategoria 1</mat-option>
+                        <mat-option value="two">Subcategoria 2</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <ng-select *ngIf="subCategories1.length > 0"
+                    class="tech-register-ticket-select2"
+                    placeholder="Selecione subcategoria..."
+                    [items]="subCategories1"
+                    (change)="onSelectedCategory('subCategoria1', $event)"
+                    [clearable]="false"
+                    bindLabel="name"
+                    bindValue="id"
+                  >
+                  </ng-select>
+                  <ng-select *ngIf="subCategories2.length > 0"
+                    class="tech-register-ticket-select2"
+                    placeholder="Selecione subcategoria..."
+                    [items]="subCategories2"
+                    (change)="onSelectedCategory('subCategoria2', $event)"
+                    [clearable]="false"
+                    bindLabel="name"
+                    bindValue="id"
+                  ></ng-select>
+                  <ng-select *ngIf="subCategories3.length > 0"
+                    class="tech-register-ticket-select2"
+                    placeholder="Selecione subcategoria..."
+                    [items]="subCategories3"
+                    [clearable]="false"
+                    bindLabel="name"
+                    bindValue="id"
+                  ></ng-select>
+                  </div>
+                  <div class="input-3" >
+                    <mat-form-field class="input-3" >
+                      <mat-label>Consultas o reclamos </mat-label>  
+                      <textarea  class="textarea" rows="10" cols="10"  matInput></textarea>
+                      <mat-hint align="end">máximo 500 caracteres</mat-hint>            
+                    </mat-form-field>
+                  </div>
+                  <div class="tech-register-ticket-container20">
+                    <div class="tech-register-ticket-container21">
+                      <div class="tech-register-ticket-container22">
+                        <label for="fileInput" class="tech-register-ticket-button1 button">
+                          <span class="tech-register-ticket-text64">
+                            <span>Seleccionar archivos</span>
+                            <br />
+                          </span>
+                        </label>
+                        <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)"
+                          multiple />
+                          
+                        <div class="tech-register-container-archivo">
+                        <span  class="tech-register-ticket-text67">
+                          <span  *ngIf="selectedFiles !== null && selectedFiles.length > 0">
+                            <ng-container  *ngFor="let file of selectedFiles; let last = last">
+                              {{ file.name }}{{ !last ? ',   ' : '' }}
+                            </ng-container>
+                          </span>
+                          <span  *ngIf="!selectedFiles || selectedFiles.length === 0">
+                            Ningún archivo seleccionado
+                          </span>
+                          <br />
+                        </span>
+                      </div>  
+
+                      </div>
+                      <span class="tech-register-ticket-text71">
+                        Ingrese un archivo con formato (pdf, doc, xls, xlsx, jpg,
+                        png, bmp) menor a 5 mb.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        <div  class="button-group">
+          <button mat-flat-button mat-button matStepperPrevious color="accent">Retroceder</button>
+          <div  class="button-enviar">
+          <button type="submit" class="tech-register-ticket-button2 button" (click)="storeTicket()">
+            <img alt="image" src="assets/send-svgrepo.svg" class="tech-register-ticket-image1" />
+            <span>Enviar</span>
+          </button> 
+           </div>
+        </div>
+       
+        </mat-step>
+
+
+        </mat-horizontal-stepper>
+
+    </div>
+
+</div>
+
+
+ 

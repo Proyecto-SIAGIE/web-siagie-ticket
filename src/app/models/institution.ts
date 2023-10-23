@@ -31,4 +31,23 @@ export class Institution {
     institution.codeAndName = `${obj.CODIGO_MODULAR} - ${obj.NOMBRE_IE}`
     return institution;
   }
+
+  static getJsonMaterialesPadron(obj: any){
+    let institution: Institution = new Institution();
+
+    institution.modularCode = obj.cod_mod? obj.cod_mod: null;
+    institution.dre = obj.dre? obj.dre: null;
+    institution.nameDRE = obj.des_dre? obj.des_dre: null;
+    institution.ugel = '';
+    institution.nameUGEL = obj.nombreOI? obj.nombreOI: null;
+    institution.deparment = obj.region? obj.region: null;
+    institution.province = obj.provincia? obj.provincia: null;
+    institution.district = obj.cen_pob? obj.cen_pob: null;
+    institution.anexo = obj.anexo? obj.anexo: null;
+    institution.nameIE = obj.cen_edu? obj.cen_edu: null;
+    institution.level = obj.niv_mod? obj.niv_mod: null;
+    institution.nameLevel = obj.niv_mod_detalle? obj.niv_mod_detalle: null;
+    institution.codeAndName = `${obj.cod_mod} - ${obj.cen_edu}`
+    return institution;
+  }
 }

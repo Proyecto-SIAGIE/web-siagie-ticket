@@ -1,0 +1,439 @@
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+
+.ticket-user-register-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 1100px;
+    height: auto;
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+    flex-wrap: wrap;
+    height: 100%;
+    align-content: center;
+    justify-content: center;
+    background-color: #EDF0F4;
+  }
+
+  .tech-register-ticket-section {
+  
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    background-color: #FFFFFF;
+  }
+
+  .tech-register-ticket-description {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tech-register-ticket-container01 {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  .tech-register-ticket-image {
+    width:600px;
+    height: auto;
+    margin: 10px;
+  }
+
+  .tech-register-ticket-text03 {
+    color: #212529;
+  }
+
+  .tech-register-ticket-text02 {
+    color: #ff2e45;
+  }
+
+  .tech-register-ticket-obligatorio1{
+    padding-top: 30px;
+  }
+  .tech-register-ticket-container02 {
+    gap: var(--dl-space-space-twounits);
+    flex: 0 0 auto;
+    width: 50%;
+    height: auto;
+    display: flex;
+    align-content: center;
+    padding-top: var(--dl-space-space-oneandhalfunits);
+    padding-bottom: var(--dl-space-space-oneandhalfunits);
+    flex-direction: column;
+   
+  }
+
+  .ticket-user-register-form-note{
+    padding-top: 30px;
+     width: 800px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     
+
+  }
+
+  .ticket-user-register-form1{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-top: 20px;
+    height: auto;
+    gap: 80px;
+  }
+
+  .ticket-user-register-form2{
+    display: flex;
+    justify-content: center;
+    
+    padding-bottom: 40px;
+    height: auto;
+   
+  }
+
+  .ticket-user-register-form1-1{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+   
+    height: auto;
+  }
+
+  .ticket-user-register-form1-2{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+   
+    height: auto;
+  }
+
+  .tech-register-ticket-container03 {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+  
+  }
+
+  .tech-register-ticket-text04 {
+    color: #005E3E;
+    font-size: 4em;
+    font-style: normal;
+    font-family: Lato;
+    font-weight: 600;
+    padding-bottom: 2.5%;
+    text-align: center;
+  
+  }
+  .tech-register-ticket-text05 {
+    color: rgb(33, 37, 41);
+    width: auto;
+    font-size: 22px;
+    font-family: Lato;
+    text-align: justify;
+    max-width: 700px;
+  }
+  .tech-register-ticket-text06 {
+    color: rgb(33, 37, 41);
+    width: auto;
+    font-size: 22px;
+    font-family: Lato;
+    font-weight: 400;
+    text-align: justify;
+    max-width: 700px;
+  }
+
+  .tech-register-ticket-mesage{
+
+    max-width: 700px;
+    display: block;
+  }
+
+
+  .tech-register-ticket-text48 {
+    color: rgb(0, 94, 62);
+  
+    font-size: 18px;
+    text-align: justify;
+    font-family: Lato;
+    max-width: 700px;
+    padding-top: var(--dl-space-space-oneandhalfunits);
+    padding-left: var(--dl-space-space-oneandhalfunits);
+    border-radius: var(--dl-radius-radius-radius8);
+    padding-right: var(--dl-space-space-oneandhalfunits);
+    padding-bottom: var(--dl-space-space-oneandhalfunits);
+    background-color: rgb(223, 237, 217);
+  }
+  .tech-register-ticket-text50 {
+    font-weight: 700px;
+  }
+  .ticket-user-register-stepper{
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+    align-content: center;
+    min-width: 70%;
+    
+    height: auto;
+    display: flex;
+  }
+
+
+ 
+  .ticket-user-register-userdetail{
+      display: flex;
+      gap: 5%;
+      justify-content: space-between;
+     
+  }
+
+ 
+
+  .input-1{
+      width: 350px;
+
+  }
+
+  .input-2{
+    width: 200px;
+
+}
+
+.input-3{
+  width: 600px;
+  text-align: center;
+
+}
+ 
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+.mat-horizontal-content-container{
+    max-width: 200px !important ;
+
+  min-height: 900px;
+}
+
+.tech-register-ticket-container14 {
+  flex: 0 0 auto;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+
+  padding-top: 2.5%;
+}
+.tech-register-ticket-container15 {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.tech-register-ticket-container17 {
+  gap: 60px;
+  display: flex;
+  width: 100%;
+  
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.tech-register-ticket-textarea {
+  width: 400px;
+  font-family: Lato;
+  border-color: #E0E0E7;
+}
+
+.tech-register-input{
+
+  border-color: #E0E0E7;
+}
+.tech-register-ticket-container18 {
+  gap: var(--dl-space-space-fourunits);
+  display: flex;
+  
+  align-items: center;
+  flex-direction: row;
+  align-self: center;
+}
+.tech-register-ticket-text52 {
+  font-size: 20px;
+  align-self: center;
+  font-family: Lato;
+}
+.tech-register-ticket-text53 {
+  color: #212529;
+}
+.tech-register-ticket-text55 {
+  color: #ff2e45;
+}
+.tech-register-ticket-select1 {
+  width: 300px;
+  border-color: #fafafaff;
+  border-width: 2px;
+  border-radius: var(--dl-radius-radius-radius4);
+  background-color: #FAFAFA;
+}
+.tech-register-ticket-select2 {
+  width: 300px;
+  margin-left: 124px;
+  border-color: #b2d4e2;
+  border-width: 2px;
+  border-radius: var(--dl-radius-radius-radius4);
+  background-color: #fafafaff;
+}
+.tech-register-ticket-container19 {
+  gap: 34px;
+  display: flex;
+  align-self: flex-start;
+  flex-direction: row;
+}
+.tech-register-ticket-text56 {
+  font-size: 20px;
+  align-self: center;
+  font-family: Lato;
+}
+.tech-register-ticket-text58 {
+  color: #ff2e45;
+}
+
+.tech-register-ticket-container20 {
+  gap: 100px;
+  display: flex;
+  align-self: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.tech-register-ticket-text59 {
+  font-size: 20px;
+  align-self: center;
+  font-family: Lato;
+}
+.tech-register-ticket-container21 {
+  gap: 10px;
+  display: flex;
+  width: 300px;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.tech-register-ticket-container22 {
+  gap: var(--dl-space-space-unit);
+  height: 45px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.tech-register-ticket-button1 {
+  align-self: center;
+  
+  border-color: #6C757D;
+  background-color: #6C757D;
+}
+
+.tech-register-ticket-text64 {
+  color: var(--dl-color-gray-white);
+  font-style: normal;
+  font-family: Lato;
+  font-weight: 700;
+  display: flex;
+  text-align: center;
+}
+
+.tech-register-ticket-text64 {
+  color: var(--dl-color-gray-white);
+  font-style: normal;
+  font-family: Lato;
+  font-weight: 700;
+  display: flex;
+  text-align: center;
+}
+
+.tech-register-ticket-text71 {
+  align-self: flex-start;
+  font-family: Lato;
+  text-shadow: 0px 4px 4px #ebff00;
+  text-align: center;
+}
+
+.tech-register-ticket-button2 {
+  gap: var(--dl-space-space-unit);
+  color: var(--dl-color-gray-white);
+  width: 152px;
+  height: 35px;
+  display: flex;
+  font-size: 18px;
+  font-style: normal;
+  
+  font-family: Lato;
+  font-weight: 400;
+  border-width: 0px;
+  flex-direction: row;
+  background-color: rgb(130, 149, 59);
+}
+.tech-register-ticket-button2:hover {
+  cursor: pointer;
+}
+
+.button-group{
+  
+  flex-direction: row;
+  justify-content: flex-start;
+ 
+}
+.button-enviar{
+  margin-left: 200px;
+
+}
+.tech-register-ticket-image1 {
+  width: auto;
+  
+  object-fit: cover;
+  align-self: center;
+  
+}
+
+
+.ng-star-inserted{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+
+.ng-untouched{
+  flex-direction: column;
+  justify-content: center;
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
