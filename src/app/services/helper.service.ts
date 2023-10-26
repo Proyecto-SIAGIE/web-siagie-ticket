@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import * as CryptoJS from "crypto-js";
 import Swal from 'sweetalert2';
+import { Router } from "@angular/router";
+import PNotify from "pnotify/dist/es/PNotify";
+import PNotifyButtons from "pnotify/dist/es/PNotifyButtons";
+import { IconFile } from '../models/icon-file';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +13,23 @@ import Swal from 'sweetalert2';
 export class HelperService {
 
 
-  constructor() { }
+  constructor(private router: Router) {
+    PNotifyButtons;
+  }
 
-  /*encriptData(data: any) {
+  getMessage(msg: string, type: string) {
+    console.log(msg);
+    return new PNotify({
+      target: document.body,
+      data: {
+        text: msg,
+        type: type,
+        delay: 3e3, //3 segundos
+      },
+    });
+  }
+
+  encriptData(data: any) {
     const key = `${btoa(environment.PASSPORT_CODIGO_SISTEMA)}${btoa(
       environment.PASSPORT_CODIGO_SISTEMA
     )}`;
@@ -43,7 +61,7 @@ export class HelperService {
 
     const dataDecripted = JSON.parse(dataBytes.toString(CryptoJS.enc.Utf8));
     return dataDecripted;
-  }*/
+  }
 
   getSuccessAlert(
     title: string,
@@ -307,17 +325,113 @@ export class HelperService {
     };
   };
 
+  formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return { size: 0, measure: "Bytes" };
 
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return {
+      size: parseFloat((bytes / Math.pow(k, i)).toFixed(dm)),
+      measure: sizes[i],
+    };
+  }
+
+  compareBinaryMeasure(size_file_request: number, pmax_size: string) {
+    const measures = [
+      { measure: "Bytes", order: 0 },
+      { measure: "KB", order: 1 },
+      { measure: "MB", order: 2 },
+      { measure: "GB", order: 3 },
+      { measure: "TB", order: 4 },
+    ];
+
+    //I check the weight of the file
+    const size_file = this.formatBytes(size_file_request);
+
+    //I get the order of the file measure
+    const measure_file = measures.find(
+      (item) => item.measure === size_file.measure
+    );
+
+    //Obtengo la medida solicitada del archivo
+    const size_request = measures.find(
+      (item) => item.measure === pmax_size.slice(-2)
+    );
+
+    //Get the maximum size of the requested file
+    const max_size = pmax_size.slice(0, -2);
+
+    //I compare the measurements if it is less than or equal to what is requested
+    if (measure_file!.order < size_request!.order) {
+      return { result: true, size_file: size_file.size + size_file.measure };
+    } else if (measure_file!.order == size_request!.order) {
+      if (size_file.size <= parseInt(max_size)) {
+        return { result: true, size_file: size_file.size + size_file.measure };
+      } else {
+        return { result: false, size_file: size_file.size + size_file.measure };
+      }
+    } else {
+      return { result: false, size_file: size_file.size + size_file.measure };
+    }
+  }
+
+  getIconFile(typeFile): IconFile {
+    let icon: IconFile = new IconFile();
+    switch (typeFile) {
+      case "application/pdf":
+        icon.name = "fa-solid fa-file-pdf";
+        icon.color = "#ea4e4e";
+        break;
+      case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        icon.name = "fa-regular fa-file-word";
+        icon.color = "#2778c4";
+        break;
+      case "application/msword":
+        icon.name = "fa-solid fa-file-word";
+        icon.color = "#2778c4";
+        break;
+      case "image/jpeg":
+        icon.name = "fa-regular fa-image";
+        icon.color = "#2778c4";
+        break;
+
+      case "image/png":
+        icon.name = "fa-regular fa-image";
+        icon.color = "#2778c4";
+        break;
+
+      case "application/vnd.rar":
+        icon.name = "fa-regular fa-file-zipper";
+        icon.color = "";
+        break;
+      case "application/zip":
+        icon.name = "fa-regular fa-file-zipper";
+        icon.color = "#a38835";
+        break;
+      case "application/octet-stream":
+        icon.name = "fa-regular fa-file-zipper";
+        icon.color = "#a38835";
+        break;
+      case "application/x-zip-compressed":
+        icon.name = "fa-regular fa-file-zipper";
+        icon.color = "#a38835";
+        break;
+      case "multipart/x-zip":
+        icon.name = "fa-regular fa-file-zipper";
+        icon.color = "#a38835";
+        break;
+      default:
+        icon.name = "fa-regular fa-file";
+        icon.color = "#2778c4";
+        break;
+    }
+
+    return icon;
+  }
 
 }
 
-class RequestDataModel {
-  DataModel!: string;
-  // Agrega las propiedades necesarias aquí
-}
 
-class LLaves {
-  Separetor!: string;
-  Key1!: string;
-  Key2!: string;
-}

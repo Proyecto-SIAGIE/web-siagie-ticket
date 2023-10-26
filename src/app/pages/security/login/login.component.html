@@ -3,22 +3,12 @@
     <article class="login-article">
       <section class="login-section">
         <span class="login-text">SIAGIE - Tickets</span>
-        <img
-          alt="image"
-          src="assets/user-ticket-answer.png"
-          loading="lazy"
-          class="login-image"
-        />
+        <img alt="image" src="assets/user-ticket-answer.png" loading="lazy" class="login-image" />
       </section>
     </article>
     <article class="login-article1">
       <section class="login-section1">
-        <img
-          alt="image"
-          src="assets/MINEDU-logo.png"
-          loading="lazy"
-          class="login-image1"
-        />
+        <img alt="image" src="assets/MINEDU-logo.png" loading="lazy" class="login-image1" />
         <div class="login-container1">
           <span class="login-text01">
             <span>Iniciar sesión</span>
@@ -30,28 +20,55 @@
           </span>
         </div>
         <div class="login-container2">
-          <form class="login-form">
-            <label class="login-text07">
-              <span>Ingresa el usuario</span>
-              <br />
-            </label>
-            <input
-              type="text"
-              name="user_input"
-              required
-              placeholder="Usuario"
-              class="login-textinput input"
-            />
-            <label class="login-text10">
-              <span>Contraseña</span>
-              <br />
-            </label>
-            <input
-              type="password"
-              name="pass_input"
-              required
-              class="login-textinput1 input"
-            />
+          <form autocomplete="off" id="login.form" [formGroup]="formLogin" (ngSubmit)="login()" class="login-form">
+            <div>
+              <label class="login-text07">
+                <span>Ingresa el usuario</span>
+                <br />
+              </label>
+              <input type="text" name="user_input" required formControlName="user" autocomplete="off"
+                blockTagHtml placeholder="Usuario" class="login-textinput input" />
+              <div class="required" *ngIf="
+                !formLogin.get('user')?.valid && formLogin.get('user')?.touched
+              ">
+                <p *ngIf="formLogin.get('user')?.hasError('required')">
+                  El usuario es requerido
+                </p>
+                <p *ngIf="formLogin.get('user')?.hasError('minlength')">
+                  El usuario debe tener máximo 9 caracteres
+                </p>
+              </div>
+            </div>
+            <div>
+              <label class="login-text10">
+                <span>Contraseña</span>
+                <br />
+              </label>
+              <input [type]="inputTextType ? 'text' : 'password'" type="password" name="pass_input" [ngClass]="{
+                'is-invalid':
+                  !formLogin.get('password')?.valid &&
+                  formLogin.get('password')?.touched
+              }" formControlName="password" autocomplete="off" maxlength="20" required
+                class="login-textinput1 input" />
+              <i (click)="toggleInputTextType()" class="fa-solid fa-eye" [ngClass]="{
+                  'fa-eye-slash': !inputTextType,
+                  'fa-eye': inputTextType
+                }"></i>
+              <div class="required" *ngIf="
+                !formLogin.get('password')?.valid &&
+                formLogin.get('password')?.touched
+              ">
+                <p *ngIf="formLogin.get('password')?.hasError('required')">
+                  La contraseña es requerida
+                </p>
+                <p *ngIf="formLogin.get('password')?.hasError('minlength')">
+                  La contraseña debe tener mínimo 8 caracteres
+                </p>
+                <p *ngIf="formLogin.get('password')?.hasError('maxlength')">
+                  La contraseña debe tener máximo 20 caracteres
+                </p>
+              </div>
+            </div>
             <label class="login-text13">
               <span>Seleccionar tipo de usuario</span>
               <br />
@@ -60,19 +77,31 @@
               <option value="Usuario Siagie" selected>Usuario Siagie</option>
               <option value="Usuario Agente OTIC">Usuario Agente OTIC</option>
             </select>
-            <img
-              alt="pastedImage"
-              src="/pastedimage-1gpd-1500h.png"
-              class="login-pasted-image"
-            />
-            <input
-              type="text"
-              name="captcha_input"
-              required
-              placeholder="Codigo de verificación"
-              class="login-textinput2 input"
-            />
-            <button type="button" class="login-button button" (click)="login()">
+            <div>
+              <div class="container-captcha">
+                <div class="svg" [innerHTML]="svg"></div>
+                <i (click)="generateCaptcha()" class="fa-sharp fa-solid fa-rotate"></i>
+              </div>
+              <input type="text" name="captcha_input" blockTagHtml formControlName="captcha"
+                autocomplete="new-user-captcha" maxlength="5" minlength="5" [ngClass]="{
+                'is-invalid':
+                  !formLogin.get('captcha')?.valid &&
+                  formLogin.get('captcha')?.touched
+              }" required placeholder="Codigo de verificación" class="login-textinput2 input" />
+              <div class="required" *ngIf="
+                !formLogin.get('captcha')?.valid &&
+                formLogin.get('captcha')?.touched
+              ">
+                <p *ngIf="formLogin.get('captcha')?.hasError('required')">
+                  El código captcha es requerido
+                </p>
+                <p *ngIf="formLogin.get('captcha')?.hasError('minlength')">
+                  El còdigo passport debe tener 5 caracteres
+                </p>
+              </div>
+            </div>
+
+            <button type="submit" class="login-button button">
               <span class="login-text16">
                 <span>Ingresar</span>
                 <br />
@@ -86,7 +115,7 @@
           <span class="login-text22">
             © 2023 Todos los derechos reservados.
           </span>
-          <span class="login-text23">Ministerio de Educación</span>
+          <a class="login-text23" href="https://www.gob.pe/minedu">Ministerio de Educación</a>
         </div>
       </section>
     </article>

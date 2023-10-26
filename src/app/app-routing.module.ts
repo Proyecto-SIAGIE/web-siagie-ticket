@@ -15,8 +15,8 @@ const routes: Routes = [
     path: "ticket-by-user",
     loadChildren: () =>
       import("./pages/management/ticket-register/ticket-user-register/ticket-user-register.module").then(
-        (mod) => mod.TicketUserResgisterMoodule
-      ), 
+        (mod) => mod.TicketUserRegisterModule
+      ),
   },
   {
     path: "login",
@@ -33,10 +33,10 @@ const routes: Routes = [
     ),
   },
   {
-    path:"table-ticket-user/:id",
+    path: "ticket-reports",
     loadChildren: () =>
-    import("./pages/management/ticket-detail/table-ticket/table-ticket.module").then(
-      (mod) => mod.TableTicketModule
+    import ("./pages/ticket-reports/ticket-reports.module").then(
+      (mod)=> mod.TicketReportsModule
     )
   }
 ]

@@ -12,8 +12,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { GestorTicketService } from './services/gestor-ticket.service';
-import { GestorGlpiService } from './services/gestor-glpi.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { GestorGlpiService } from './services/gestor-glpi.service';
     HttpClientModule,
     NgSelectModule,
     FormsModule,
+  
     NgxsModule.forRoot([],
       { developmentMode: !environment.production }
     ),
@@ -35,7 +36,8 @@ import { GestorGlpiService } from './services/gestor-glpi.service';
     }),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers:[GestorTicketService, GestorGlpiService],
   bootstrap: [AppComponent]

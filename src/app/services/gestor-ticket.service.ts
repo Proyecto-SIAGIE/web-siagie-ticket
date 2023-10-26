@@ -3,16 +3,17 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { map, switchMap, tap } from "rxjs/operators";
 import { Institution } from "../models/institution";
-import { Ticket } from "../models/ticket";
-import { Ticket_Detail } from "../models/ticket_detail";
-import { User_External } from "../models/user-external";
-import { Ticket_Notes } from "../models/ticket_notes";
 import { Observable } from "rxjs";
+import { Ticket } from "../models/ticket";
+import { TicketDetail } from "../models/ticket-detail";
+import { UserExternal } from "../models/user-external";
+import { TicketNotes } from "../models/ticket-notes";
 
 @Injectable({
   providedIn: "root",
 })
 export class GestorTicketService {
+
   constructor(private http: HttpClient) {}
 
   registerUser(dataUser: any){
@@ -79,8 +80,16 @@ export class GestorTicketService {
     )
   }
 
-  sendTicketToGlpi(userId: string, ticketId: string, modularCode: string) {
+  sendTicketToGlpi(userId: string, ticketId: string, modularCode: string, files: File[] | null) {
     const formData = new FormData();
+
+    //let _filename: any[] = [];
+    if(files?.length != 0 ){
+      files?.forEach((file: File) => {
+        formData.append("files", file);
+        //_filename.push(file.name);
+      });
+    }
 
     formData.append('userId', userId);
     formData.append('ticketId', ticketId);
@@ -102,7 +111,7 @@ export class GestorTicketService {
 
     return this.http.get(`${environment.API_GESTOR_TICKETS}/api-padron/DRE/${dreCode}/UGEL/${ugelCode}/InstitucionesEducativas`,{params: params}).pipe(
       map((resp:any) => {
-        
+
         if (resp.data && resp.data.length > 0) {
           return resp.data.map((row: Object) => Institution.getJson(row));
         } else {
@@ -112,69 +121,55 @@ export class GestorTicketService {
     )
   }
 
-  //GET ALL
+  getInstitutionByModularCode(modularCode: string, anexo: string ) {
+    const params = new HttpParams()
+    .set('anexo', anexo)
 
-  GetTickest(){
-    return this.http.get(`${environment.API_GESTOR_TICKETS}/tickets`)
-  }
-
-  //GET BY ID
-
-  GetTickte_BY_ID(ticketID: number){
-    return this.http.get(`${environment.API_GESTOR_TICKETS}/tickets/${ticketID}`).pipe(
-      map((resp:any) => {
-        
-        if (resp.data && resp.data.length > 0) {
-          return resp.data.map((row: Object) => Ticket.getJson(row));
-        } else {
-          console.log(resp.data) // Respuesta
-          return [];
-        }
+    return this.http.get(`${environment.API_GESTOR_TICKETS}/api-padron/IE/${modularCode}`,{
+      params:params
+    }).pipe(
+      map((respAssign: any) => {
+        return Institution.getJsonMaterialesPadron(respAssign.data[0]);
       })
     )
   }
 
-  GetTicketDetail_BY_ID( ticket_detail_Id: number){
+  GetTicket_by_Id(ticketId: number) : Observable<Ticket>{
 
-    return this.http.get(`${environment.API_GESTOR_TICKETS}/tickets/${ticket_detail_Id}/ticketDetail`).pipe(
-      map((resp:any) => {
-        
-        if (resp.data && resp.data.length > 0) {
-          return resp.data.map((row: Object) => Ticket_Detail.getJson(row));
-        } else {
-
-          return [];
-        }
+    return this.http.get<Ticket>(`${environment.API_GESTOR_TICKETS}/tickets/${ticketId}`).pipe(
+      map((resp) => {
+        return resp;
       })
     )
   }
 
-  GetUserExternal_BY_ID(user_externalId: number){
 
-    return this.http.get(`${environment.API_GESTOR_TICKETS}/user-externals/${user_externalId}`).pipe(
-      map((resp:any) => {
-        
-        if (resp.data && resp.data.length > 0) {
-          return resp.data.map((row: Object) => User_External.getJson(row));
-        } else {
-          return [];
-        }
+  GetTicketDetail_by_Id(ticket_detail_Id: number) : Observable<TicketDetail>{
+
+    return this.http.get<TicketDetail>(`${environment.API_GESTOR_TICKETS}/tickets/${ticket_detail_Id}/ticketDetail`).pipe(
+      map((resp) => {
+        return resp;
       })
     )
   }
 
-  GetNotes_by_TicketID(Notes_by_TicketId: number){
-    return this.http.get(`${environment.API_GESTOR_TICKETS}/tickets/${Notes_by_TicketId}/notes`).pipe(
-      map((resp:any) => {
-        
-        if (resp.data && resp.data.length > 0) {
-          return resp.data.map((row: Object) => Ticket_Notes.getJson(row));
-        } else {
-          return [];
-        }
+  
+  GetUserExternal_BY_ID(user_externalId: number) : Observable<UserExternal>{
+
+    return this.http.get<UserExternal>(`${environment.API_GESTOR_TICKETS}/user-externals/${user_externalId}`).pipe(
+      map((resp) => {
+        return resp;
       })
     )
   }
 
+
+  GetNotes_by_TicketID(Notes_by_TicketId: number) : Observable<TicketNotes>{
+    return this.http.get<TicketNotes>(`${environment.API_GESTOR_TICKETS}/tickets/${Notes_by_TicketId}/notes`).pipe(
+      map((resp) => {
+        return resp;
+      })
+    )
+  }
 
 }
