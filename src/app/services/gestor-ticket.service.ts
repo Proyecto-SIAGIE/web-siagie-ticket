@@ -3,6 +3,11 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { map, switchMap, tap } from "rxjs/operators";
 import { Institution } from "../models/institution";
+import { Observable } from "rxjs";
+import { Ticket } from "../models/ticket";
+import { TicketDetail } from "../models/ticket-detail";
+import { UserExternal } from "../models/user-external";
+import { TicketNotes } from "../models/ticket-notes";
 
 @Injectable({
   providedIn: "root",
@@ -129,5 +134,39 @@ export class GestorTicketService {
     )
   }
 
+  GetTicket_by_Id(ticketId: number) : Observable<Ticket>{
+
+    return this.http.get<Ticket>(`${environment.API_GESTOR_TICKETS}/tickets/${ticketId}`).pipe(
+      map((resp) => {
+        return resp;
+      })
+    )
+  }
+
+  GetTicketDetail_by_Id(ticket_detail_Id: number) : Observable<TicketDetail>{
+
+    return this.http.get<TicketDetail>(`${environment.API_GESTOR_TICKETS}/tickets/${ticket_detail_Id}/ticketDetail`).pipe(
+      map((resp) => {
+        return resp;
+      })
+    )
+  }
+
+  GetUserExternal_BY_ID(user_externalId: number) : Observable<UserExternal>{
+
+    return this.http.get<UserExternal>(`${environment.API_GESTOR_TICKETS}/user-externals/${user_externalId}`).pipe(
+      map((resp) => {
+        return resp;
+      })
+    )
+  }
+
+  GetNotes_by_TicketID(Notes_by_TicketId: number) : Observable<TicketNotes>{
+    return this.http.get<TicketNotes>(`${environment.API_GESTOR_TICKETS}/tickets/${Notes_by_TicketId}/notes`).pipe(
+      map((resp) => {
+        return resp;
+      })
+    )
+  }
 
 }
