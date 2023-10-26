@@ -20,7 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     HeaderComponent,
     BodyComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -40,7 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers:[GestorTicketService, GestorGlpiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

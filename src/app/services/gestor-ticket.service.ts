@@ -143,6 +143,7 @@ export class GestorTicketService {
     )
   }
 
+
   GetTicketDetail_by_Id(ticket_detail_Id: number) : Observable<TicketDetail>{
 
     return this.http.get<TicketDetail>(`${environment.API_GESTOR_TICKETS}/tickets/${ticket_detail_Id}/ticketDetail`).pipe(
@@ -152,6 +153,7 @@ export class GestorTicketService {
     )
   }
 
+  
   GetUserExternal_BY_ID(user_externalId: number) : Observable<UserExternal>{
 
     return this.http.get<UserExternal>(`${environment.API_GESTOR_TICKETS}/user-externals/${user_externalId}`).pipe(
@@ -160,6 +162,7 @@ export class GestorTicketService {
       })
     )
   }
+
 
   GetNotes_by_TicketID(Notes_by_TicketId: number) : Observable<TicketNotes>{
     return this.http.get<TicketNotes>(`${environment.API_GESTOR_TICKETS}/tickets/${Notes_by_TicketId}/notes`).pipe(

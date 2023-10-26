@@ -1,5 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { GestorTicketService } from 'src/app/services/gestor-ticket.service';
+
 import { TicketDetail } from 'src/app/models/ticket-detail';
 import { TicketNotes } from 'src/app/models/ticket-notes';
 import { Ticket } from 'src/app/models/ticket';
@@ -16,6 +17,7 @@ import { FormGroup } from '@angular/forms';
 })
 
 export class TicketDetailExternalComponent implements OnInit {
+
   tickets!: Ticket;
   ticket_Details!: TicketDetail;
   user_externals!: UserExternal;
@@ -30,6 +32,7 @@ export class TicketDetailExternalComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     let ticketId : any = this.active_route.snapshot.paramMap.get('id'); // AL MOMENTO DE SELECCIONAR EL TICKET LE MUESTRA LOS DETALLES POR ID
     console.log(ticketId);
     this.gestion_ticket_service.GetTicket_by_Id(ticketId).subscribe(data => this.tickets = data)
@@ -39,3 +42,4 @@ export class TicketDetailExternalComponent implements OnInit {
 
   }
 }
+ 
